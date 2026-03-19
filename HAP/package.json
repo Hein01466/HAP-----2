@@ -9,8 +9,10 @@
     "build": "nest build",
     "lint": "eslint .",
     "format": "prettier --write \"src/**/*.ts\"",
-    "test": "jest --passWithNoTests",
+    "test": "jest --config ./jest.config.cjs --passWithNoTests",
     "test:watch": "jest --watch",
+    "test:cov": "jest --config ./jest.config.cjs --coverage",
+    "test:ci": "jest --config ./jest.config.cjs --runInBand --coverage",
     "seed:admin": "ts-node -r dotenv/config src/scripts/seed-admin.ts",
     "seed:production": "ts-node -r dotenv/config src/scripts/seed-production.ts"
   },

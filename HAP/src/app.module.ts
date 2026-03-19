@@ -18,6 +18,7 @@ import { AuditLogsModule } from './audit-logs/audit-logs.module'
 import { SettingsModule } from './settings/settings.module'
 import { EmailModule } from './email/email.module'
 import { AuditLogInterceptor } from './audit-logs/audit-log.interceptor'
+import { HealthModule } from './health/health.module'
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { AuditLogInterceptor } from './audit-logs/audit-log.interceptor'
     AuditLogsModule,
     SettingsModule,
     EmailModule,
+    HealthModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: ThrottlerGuard },
