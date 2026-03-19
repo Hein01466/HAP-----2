@@ -2,6 +2,11 @@
 
 NestJS + MongoDB API with admin/user roles and CRUD for departments and assets.
 
+## Frontend App
+- Location: `frontend/`
+- Frontend setup guide: `frontend/README.md`
+- Local dev URL (default): `http://localhost:5173`
+
 ## Quick Start
 1) Copy `.env.example` to `.env` and update values.
 2) Install dependencies: `npm install`
