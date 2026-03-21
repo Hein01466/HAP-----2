@@ -5,6 +5,7 @@
   "description": "Management System backend (NestJS + MongoDB)",
   "scripts": {
     "start": "nest start",
+    "start:prod": "node dist/main.js",
     "start:dev": "nest start --watch",
     "build": "nest build",
     "lint": "eslint .",
@@ -60,8 +61,5 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.46.4"
-  },
-  "overrides": {
-    "lru-cache": "^10.4.3"
   }
 }

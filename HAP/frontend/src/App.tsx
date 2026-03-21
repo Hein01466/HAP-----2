@@ -11,17 +11,38 @@ function ProtectedRoute({ children }: { children: JSX.Element }) {
 }
 
 export function App() {
+  const protectedPaths = [
+    '/dashboard',
+    '/users',
+    '/departments',
+    '/assets',
+    '/employees',
+    '/projects',
+    '/tasks',
+    '/requests',
+    '/inventory',
+    '/vendors',
+    '/purchase-orders',
+    '/maintenance',
+    '/audit-logs',
+    '/settings',
+  ]
+
   return (
     <Routes>
       <Route path="/auth" element={<AuthPage />} />
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute>
-            <DashboardPage />
-          </ProtectedRoute>
-        }
-      />
+      {protectedPaths.map((path) => (
+        <Route
+          key={path}
+          path={path}
+          element={
+            <ProtectedRoute>
+              <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+      ))}
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )

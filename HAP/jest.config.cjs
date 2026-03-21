@@ -9,5 +9,6 @@ module.exports = {
   },
   collectCoverageFrom: ['src/**/*.ts', '!src/main.ts', '!src/scripts/**', '!src/types/**'],
   coverageDirectory: 'coverage',
+  coverageProvider: 'v8',
   testEnvironment: 'node',
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common'
+import { BadRequestException, Body, Controller, Post } from '@nestjs/common'
 import { AuthService } from './auth.service'
 import { CreateUserDto } from '../users/dto/create-user.dto'
 import { ApiTags } from '@nestjs/swagger'
@@ -14,7 +14,10 @@ export class AuthController {
   }
 
   @Post('login')
-  login(@Body() dto: CreateUserDto) {
-    return this.authService.login(dto.email, dto.password)
+  login(@Body('email') email: string, @Body('password') password: string) {
+    if (!email || !password) {
+      throw new BadRequestException('email and password are required')
+    }
+    return this.authService.login(email, password)
   }
 }

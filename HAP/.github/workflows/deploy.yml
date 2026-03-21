@@ -30,6 +30,6 @@ jobs:
             OWNER_LOWER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
             export HAP_IMAGE="ghcr.io/$OWNER_LOWER/hap-backend:${{ inputs.image_tag }}"
             echo "${{ secrets.GHCR_READ_TOKEN }}" | docker login ghcr.io -u "${{ secrets.GHCR_READ_USER }}" --password-stdin
-            docker compose -f docker-compose.deploy.yml pull
-            docker compose -f docker-compose.deploy.yml up -d
+            docker compose -f docker-compose.deploy.yml pull api
+            docker compose -f docker-compose.deploy.yml up -d --build
             docker image prune -f

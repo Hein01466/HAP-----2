@@ -3,7 +3,8 @@
 ## Workflows
 - `.github/workflows/ci.yml`
   - Runs on PR and pushes to `main`/`master`
-  - Executes: `npm ci`, `npm run lint`, `npm run test:ci`, `npm run build`
+  - Executes backend quality checks: `npm ci`, `npm run lint`, `npm run test:ci`, `npm run build`
+  - Executes frontend build validation: `cd frontend && npm ci && npm run build`
 
 - `.github/workflows/release-image.yml`
   - Runs on pushes to `main`/`master` (and manual dispatch)
@@ -15,6 +16,7 @@
 - `.github/workflows/deploy.yml`
   - Manual deployment over SSH
   - Pulls image tag and restarts with `docker-compose.deploy.yml`
+  - Deploys the backend service and MongoDB only
 
 ## Required GitHub Secrets
 Create these in your repository settings:
@@ -34,7 +36,8 @@ Create these in your repository settings:
 
 ## Deploy Flow
 1. Push to `main` or `master` (builds and publishes image).
-2. Run `Deploy` workflow manually.
-3. Set `image_tag` input:
+2. Publish the frontend separately from `frontend/dist` to your static host.
+3. Run `Deploy` workflow manually for the backend.
+4. Set `image_tag` input:
    - `latest` for newest stable image
    - `sha-...` to pin a specific build

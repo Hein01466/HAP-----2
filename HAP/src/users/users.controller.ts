@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -85,7 +86,7 @@ export class UsersController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, dto: UpdateUserDto) {
+  update(@Param('id') id: string, @Body() dto: UpdateUserDto) {
     return this.usersService.update(id, dto)
   }
 

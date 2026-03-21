@@ -10,7 +10,7 @@ export class CreateUserDto {
   @ApiProperty({ example: 'passw0rd' })
   @IsString()
   @MinLength(6)
-  @Matches(/^(?=.*[A-Za-z])(?=.*\\d).+$/, {
+  @Matches(/^(?=.*[A-Za-z])(?=.*\d).+$/, {
     message: 'password must include letters and numbers',
   })
   password: string

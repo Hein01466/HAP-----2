@@ -32,43 +32,82 @@ export function AuthPage() {
 
   return (
     <main className="auth-shell">
-      <section className="auth-card">
-        <p className="eyebrow">HAP Management System</p>
-        <h1>{mode === 'login' ? 'Sign in to your workspace' : 'Create your account'}</h1>
+      <section className="auth-layout">
+        <article className="auth-showcase">
+          <div className="auth-showcase-copy">
+            <p className="eyebrow">HAP Management System</p>
+            <h1>Modern control for teams, assets, and operations.</h1>
+            <p>
+              A production-ready workspace for departments, inventory, and user administration with
+              clear reporting and cleaner workflows.
+            </p>
+          </div>
 
-        <form onSubmit={onSubmit} className="auth-form">
-          <label>
-            Email
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-          </label>
+          <div className="auth-feature-list">
+            <div className="auth-feature-card">
+              <strong>Live inventory oversight</strong>
+              <p>Track asset status, ownership, and department distribution from one dashboard.</p>
+            </div>
+            <div className="auth-feature-card">
+              <strong>Role-based access</strong>
+              <p>Separate admin and user permissions with a simple, secure sign-in flow.</p>
+            </div>
+            <div className="auth-feature-card">
+              <strong>Operational clarity</strong>
+              <p>Reduce manual coordination with organized data tables and guided actions.</p>
+            </div>
+          </div>
+        </article>
 
-          <label>
-            Password
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              minLength={6}
-            />
-          </label>
+        <article className="auth-card">
+          <div className="auth-card-header">
+            <p className="eyebrow">{mode === 'login' ? 'Welcome back' : 'Create workspace access'}</p>
+            <h2>{mode === 'login' ? 'Sign in to your workspace' : 'Create your account'}</h2>
+            <p className="section-copy">
+              {mode === 'login'
+                ? 'Use your company email to continue to the management console.'
+                : 'Register a new account, then continue directly into the dashboard.'}
+            </p>
+          </div>
 
-          {error && <p className="error-box">{error}</p>}
+          <form onSubmit={onSubmit} className="auth-form">
+            <label>
+              Work email
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="name@company.com" required />
+              <span className="field-help">Use the email address associated with your workspace access.</span>
+            </label>
 
-          <button type="submit" disabled={loading}>
-            {loading ? 'Please wait...' : mode === 'login' ? 'Login' : 'Register & Login'}
+            <label>
+              Password
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                required
+                minLength={6}
+              />
+              <span className="field-help">Minimum 6 characters. Use a strong password for admin accounts.</span>
+            </label>
+
+            {error && <p className="error-box">{error}</p>}
+
+            <button type="submit" disabled={loading}>
+              {loading ? 'Please wait...' : mode === 'login' ? 'Sign In' : 'Register & Continue'}
+            </button>
+          </form>
+
+          <button
+            type="button"
+            className="link-button"
+            onClick={() => {
+              setError('')
+              setMode(mode === 'login' ? 'register' : 'login')
+            }}
+          >
+            {mode === 'login' ? 'Need an account? Register' : 'Already have an account? Sign in'}
           </button>
-        </form>
-
-        <button
-          className="link-button"
-          onClick={() => {
-            setError('')
-            setMode(mode === 'login' ? 'register' : 'login')
-          }}
-        >
-          {mode === 'login' ? 'Need an account? Register' : 'Already have an account? Login'}
-        </button>
+        </article>
       </section>
     </main>
   )
